@@ -18,23 +18,28 @@ After=network.target
 # checks network before start
 
 [Service]
-Type=simple							
+
 # process runs in the foreground
+Type=simple							
 User=loscra13						
 # me, maybe root
 
-# command terminal position
-ExecStart=/usr/bin/node /home/loscra13/Desktop/Lab-Boot/app.js
+# express modules dir
+
 # call 'node app'
+WorkingDirectory=/home/loscra13/Desktop/Lab-Boot
+ExecStart=/usr/bin/node /home/loscra13/Desktop/Lab-Boot/app.js
+
+# autorestart in 10s
 Restart=on-failure	
-# autorestart
-RestartSec=10							
-# wait time before restart
+RestartSec=10	
+
+# logs
 StandardOutput=journal
 StandardError=journal					
-# logs
 
-# Environment="NODE_ENV=production"				# just in case
+# just in case
+# Environment="NODE_ENV=production"
 # Environment="PORT=3000"
 
 [Install]
