@@ -1,0 +1,32 @@
+########################################################################
+# 
+#	which node
+#	/etc/systemd/system/hello.service
+#
+#	SYSTEM D
+#	1. sudo systemctl daemon-reload
+#	2. sudo systemctl enable hello.service
+#	3. sudo systemctl start hello.service
+#	4. sudo systemctl status hello.service
+#
+########################################################################
+
+[Unit]
+Description=Node Hello World			; name
+After=network.target					; checks network before start
+
+[Service]
+Type=simple								; process runs in the foreground
+User=loscra13							; me, maybe root
+WorkingDirectory= "path"				; command terminal position
+ExecStart=/usr/bin/node "path"			; call 'node app'
+Restart=on-failure						; autorestart
+RestartSec=10							; wait time before restart
+StandardOutput=journal					; logs
+StandardError=journal					; logs
+
+# Environment="NODE_ENV=production"		; just in case
+# Environment="PORT=3000"
+
+[Install]
+WantedBy=multi-user.target				; start at boot
