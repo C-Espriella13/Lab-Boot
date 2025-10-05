@@ -12,21 +12,31 @@
 ########################################################################
 
 [Unit]
-Description=Node Hello World			; name
-After=network.target					; checks network before start
+Description=Node Hello World					
+# name
+After=network.target						
+# checks network before start
 
 [Service]
-Type=simple								; process runs in the foreground
-User=loscra13							; me, maybe root
-WorkingDirectory= "path"				; command terminal position
-ExecStart=/usr/bin/node "path"			; call 'node app'
-Restart=on-failure						; autorestart
-RestartSec=10							; wait time before restart
-StandardOutput=journal					; logs
-StandardError=journal					; logs
+Type=simple							
+# process runs in the foreground
+User=loscra13						
+# me, maybe root
 
-# Environment="NODE_ENV=production"		; just in case
+# command terminal position
+ExecStart=/usr/bin/node /home/loscra13/Desktop/Lab-Boot/app.js
+# call 'node app'
+Restart=on-failure	
+# autorestart
+RestartSec=10							
+# wait time before restart
+StandardOutput=journal
+StandardError=journal					
+# logs
+
+# Environment="NODE_ENV=production"				# just in case
 # Environment="PORT=3000"
 
 [Install]
-WantedBy=multi-user.target				; start at boot
+WantedBy=multi-user.target					
+# start at boot
