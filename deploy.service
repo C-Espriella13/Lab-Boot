@@ -16,28 +16,19 @@ Description=Hello Continuous Deployment
 After=network.target						
 
 [Service]
-# process runs in the foreground
-Type=simple							
+# process gets called once and dies
+Type=oneshot
 User=loscra13						
-# me, maybe root
 
-# express modules dir
 # check if pull deployment
 WorkingDirectory=/home/loscra13/Desktop/Lab-Boot
 ExecStart=/home/loscra13/Desktop/Lab-Boot/deploy.sh
-
-# autorestart in 10s
-Restart=on-failure	
-RestartSec=10	
 
 # logs
 StandardOutput=journal
 StandardError=journal					
 
-# just in case
-# Environment="NODE_ENV=production"
-# Environment="PORT=3000"
 
-[Install]
-WantedBy=multi-user.target					
-# start at boot
+# [Install]
+# WantedBy=multi-user.target					
+# start at boot ????????????????

@@ -1,0 +1,17 @@
+########################################################################
+# 
+#	DAEMON timer thing
+#
+########################################################################
+
+[Unit]
+Description=Pull Request
+Requires=deploy.service
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=5min
+Unit=deploy.service
+
+[Install]
+WantedBy=timers.target
